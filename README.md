@@ -10,6 +10,25 @@ There is a big boom in the industry where every business wants to build their ow
 - Calling OpenAI API has higher cost (number of queries -> huge cost)
 - ChatGPT has no access to internet / real time knowledge
 
+**This is how Langchain comes into place. What is LangChain then?**
+- LangChain is a framework that allows you to build applications based on LLM with external data sources, memory, and other utilities.
+
+**What are the main properties of LangChain framework?**
+- **Components**:  
+  Components are modular building blocks that are ready and easy to use to build powerful applications. Including:  
+  - LLM Wrappers: unified interface to interact with different LLMs)
+  - Prompt Template: standardized input fed into the LLMs)
+  - Indexes: structure large datasets or documents for quick search).
+
+- **Chains**:  
+  Chains refer to sequences of actions that the application will perform. Chains allow you to combine multiple components or tasks into a single workflow.
+
+- **Agents**:  
+  Agents use LLMs to make decisions about what actions to take. They interact with external tools (e.g., search engines, APIs, or databases) to fetch real-time or extended information.
+
+- **Memory**:  
+  Langchain allows applications to have memory, which means that the application can remember previous interactions and use that context for future conversations.
+
 ### Vector Database
 **How does Google search figure out the different meaning of "Apple" between "calories in Apple" and "employees in Apple"?**
 - **Semantic search**:  
