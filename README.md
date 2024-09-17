@@ -54,6 +54,8 @@ There is a big boom in the industry where every business wants to build their ow
 
   Benefits: fast search & optimized storage
 
+## Technical Architecture
+<img width="847" alt="image" src="https://github.com/user-attachments/assets/6f50bd7d-fe30-4a09-bb8c-b4ea3ee5deb4">
 
 
 
