@@ -2,7 +2,7 @@
 This is an End-to-End LLM question-and-answer system using the langchain framework. 
 
 ## Concepts:
-### LangChain
+### 1. LangChain
 There is a big boom in the industry where every business wants to build their own LLM
 
 **Why companies cannot directly use ChatGPT or use OpenAI API?**
@@ -29,7 +29,7 @@ There is a big boom in the industry where every business wants to build their ow
 - **Memory**:  
   Langchain allows applications to have memory, which means that the application can remember previous interactions and use that context for future conversations.
 
-### Vector Database
+### 2. Vector Database
 **How does Google search figure out the different meaning of "Apple" between "calories in Apple" and "employees in Apple"?**
 - **Semantic search**:  
   Instead of keyword matching, it understands the intent of user query and use the context to perform the search
@@ -56,6 +56,34 @@ There is a big boom in the industry where every business wants to build their ow
 
 ## Technical Architecture
 <img width="847" alt="image" src="https://github.com/user-attachments/assets/6f50bd7d-fe30-4a09-bb8c-b4ea3ee5deb4">
+
+
+## Challenges / Problems
+> Observations:
+> 1. The model sometimes generate answer based on its own knowledge instead of CSV file
+> 2. The model generate random answer based on questions that are not found in the CSV file
+>
+> What we want:  
+> - look at the CSV file and if there is an answer, pull the answer from there.
+> - If there isn't an answer, simply output I don't know
+
+### LLM hallucinations 
+“Hallucinations” in LLM means the generation of false or misleading information.
+The model produces outputs that are coherent and grammatically correct but factually incorrect or nonsensical.
+
+### How to solve
+Use the prompt template to constrain LLM's behavior
+```
+from langchain.prompts import PromptTemplate
+
+prompt_template = """Given the following context and a question, generate an answer based on the following pieces of context only.
+In the answer try to provide as much text as possible from "response" section in the source document context.
+If you can't find the answer in the context, please kindly state "I don't know."
+
+CONTEXT: {context}
+
+QUESTION: {question}"""
+```
 
 
 
