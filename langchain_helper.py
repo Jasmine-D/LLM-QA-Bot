@@ -14,7 +14,7 @@ load_dotenv() # take environment variables from .env (especially openai api key)
 llm = ChatGoogleGenerativeAI(
         model="gemini-1.5-pro",
         google_api_key=os.environ["GOOGLE_API_KEY"],
-        temperature=0.5
+        temperature=0.1
 )
 
 # Initialize instructor embeddings using the Hugging Face model
