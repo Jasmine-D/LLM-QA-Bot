@@ -1,12 +1,23 @@
 # LLM-QA-Bot
 This is an End-to-End LLM question-and-answer system using the langchain framework.
+
 <img alt="image" src="./codebasics_q_and_a.png">
+
 
 ## Project Highlights
 - Use a real CSV file of FAQs that Codebasics company is using right now.
 - Their human staff will use this file to assist their course learners.
 - We will build an LLM based question and answer system that can reduce the workload of their human staff.
 - Students should be able to use this system to ask questions directly and get answers within seconds
+
+
+## Technical Architecture
+<img width="847" alt="image" src="https://github.com/user-attachments/assets/6f50bd7d-fe30-4a09-bb8c-b4ea3ee5deb4">
+
+- Langchain + ChatGoogleGenerativeAI: LLM based Q&A
+- Streamlit: UI
+- Huggingface instructor embeddings: Text embeddings
+- FAISS: Vector databse
 
 
 ## Concepts:
@@ -61,10 +72,7 @@ There is a big boom in the industry where every business wants to build their ow
   The Technique is called `LSH (Locality Sensitive Hashing)`
 
   Benefits: fast search & optimized storage
-
-## Technical Architecture
-<img width="847" alt="image" src="https://github.com/user-attachments/assets/6f50bd7d-fe30-4a09-bb8c-b4ea3ee5deb4">
-
+  
 
 ## Challenges / Problems
 
