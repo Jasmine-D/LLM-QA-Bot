@@ -59,6 +59,8 @@ There is a big boom in the industry where every business wants to build their ow
 
 
 ## Challenges / Problems
+
+### 1. LLM hallucinations 
 > Observations:
 > 1. The model sometimes generate answer based on its own knowledge instead of CSV file
 > 2. The model generate random answer based on questions that are not found in the CSV file
@@ -67,13 +69,12 @@ There is a big boom in the industry where every business wants to build their ow
 > - look at the CSV file and if there is an answer, pull the answer from there.
 > - If there isn't an answer, simply output I don't know
 
-### LLM hallucinations 
 “Hallucinations” in LLM means the generation of false or misleading information.
 The model produces outputs that are coherent and grammatically correct but factually incorrect or nonsensical.
 
-### How to solve
+**-> How to solve:**  
 Use the prompt template to constrain LLM's behavior
-```
+```python
 from langchain.prompts import PromptTemplate
 
 prompt_template = """Given the following context and a question, generate an answer based on the following pieces of context only.
@@ -85,5 +86,40 @@ CONTEXT: {context}
 QUESTION: {question}"""
 ```
 
+### 2. Protect credentials
+> What we want:  
+> - Do not want to spread credentials into public repository like github.
+
+**-> How to solve:**  
+Industry practice: Use dotenv package and create one .env file to centralize configuration management.
+```python
+from dotenv import load_dotenv
+load_dotenv() # dotenv will go to .env file to read each key-value pair, and set them as operating system env variable
+
+os.environ["GOOGLE_API_KEY"] # use os.envrion to invoke variable in .env file
+```
+
+### 3. VectorDB persistant storage
+> What we want:  
+> - Do not want to create the db each time we have a user query because creating VectorDB takes around 1min time.
+> - Want to store VectorDB in disk instead of in memory.
+
+**-> How to solve:**  
+Create the VectorDB in advance and save it locally.
+So that you only need to create one time and for further QA query, you just simply use it.
+Once the CSV got updated, that is the time we will create the database again.
+```python
+vectordb_file_path="faiss_index"
+def create_vector_db():
+    # Load data from FAQ sheet
+    loader = CSVLoader(file_path='codebasics_faqs.csv', encoding="ISO-8859-1", source_column='prompt')
+    docs = loader.load()
+
+    # Create a FAISS instance for vector database from 'data'
+    vectordb = FAISS.from_documents(documents=docs, embedding=instructor_embeddings)
+
+    # Save vector database locally
+    vectordb.save_local("faiss_index")
+```
 
 
